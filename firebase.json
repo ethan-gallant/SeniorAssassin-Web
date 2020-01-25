@@ -1,0 +1,20 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/oauth-login",
+        "function": "oauthLogin"
+      },
+      {
+        "source": "/api/request-token",
+        "function": "oauthCallback"
+      }
+    ]
+  }
+}
