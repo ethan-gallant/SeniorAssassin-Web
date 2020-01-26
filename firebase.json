@@ -26,8 +26,11 @@
       {
         "source": "/dashboard/*",
         "destination": "/index.html"
+      },
+      {
+        "source": "/error",
+        "destination": "/index.html"
       }
-
     ]
   }
 }
