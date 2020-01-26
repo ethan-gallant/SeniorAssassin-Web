@@ -10,16 +10,16 @@ module.exports = {
         manifestOptions:{
             name: 'SeniorAssassin',
             short_name: 'Assassin',
-            start_url: '/',
+            start_url: '.',
             display: 'standalone',
-            "icons": [
+            icons: [
                 {
-                    "src": "./img/icons/android-icon-192x192.png",
+                    "src": "/img/icons/android-icon-192x192.png",
                     "sizes": "192x192",
                     "type": "image/png"
                 },
                 {
-                    "src": "./img/icons/android-icon-512x512.png",
+                    "src": "/img/icons/android-icon-512x512.png",
                     "sizes": "512x512",
                     "type": "image/png"
                 }
