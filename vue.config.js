@@ -22,6 +22,16 @@ module.exports = {
                     "src": "/img/icons/android-icon-512x512.png",
                     "sizes": "512x512",
                     "type": "image/png"
+                },
+                {
+                    "src": "/img/icons/apple-icon-180x180.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "src": "/img/icons/apple-icon.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
                 }
             ],
         },
