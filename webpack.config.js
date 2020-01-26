@@ -19,7 +19,7 @@ module.exports = {
     plugins: [
         new CopyPlugin([
             {from: 'src/assets/img/icons/*', to: 'img/icons/'},
-            {from:'src/404.html'}
+            {from:'src/assets/404.html'}
         ]),
     ],
 };
