@@ -14,6 +14,9 @@
     font-style: normal;
 
   }
+  html{
+    background-color: transparent;
+  }
 
   * {
     margin: 0;
@@ -44,7 +47,7 @@
       display: block;
       position: absolute;
       width: 10%;
-      background: #222;
+      background: #111;
       height: 0.3em;
       right: 20%;
       top: -0.21em;
@@ -57,7 +60,7 @@
       display: block;
       position: absolute;
       width: 10%;
-      background: #222;
+      background: #111;
       height: 0.3em;
       left: 20%;
       bottom: -0.25em;
@@ -74,5 +77,48 @@
         left: 80%;
       }
     }
+  }
+  .brk-btn-red {
+
+    color: #ff000a;
+
+    border: 0.2em solid #ff000a;
+
+    &:hover {
+      color: #ff000a;
+    }
+  }
+  .brk-btn-blue {
+
+    color: #0003ff;
+
+    border: 0.2em solid #0003ff;
+
+    &:hover {
+      color: #0003ff;
+    }
+  }
+  .brk-btn-gold {
+
+    color: #ff9f00;
+
+    border: 0.2em solid #ff9f00;
+
+    &:hover {
+      color: #ff9f00;
+    }
+  }
+  .brk-btn-grey {
+
+    color: #a5a5a5;
+
+    border: 0.2em solid #a5a5a5;
+
+    &:hover {
+      color: #a5a5a5;
+    }
+  }
+  .btn-wrapper{
+    margin:10px;
   }
 </style>
