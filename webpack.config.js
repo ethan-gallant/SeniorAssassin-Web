@@ -1,3 +1,5 @@
+const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
     module: {
         rules: [
@@ -14,4 +16,9 @@ module.exports = {
             },
         ],
     },
+    plugins: [
+        new CopyPlugin([
+            {from: 'src/assets/img/icons/*', to: 'img/icons/'}
+        ]),
+    ],
 };
