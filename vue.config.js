@@ -3,14 +3,14 @@ module.exports = {
     publicPath: './',
     pwa: {
         name: 'SeniorAssassin',
-        themeColor: '#4DBA87',
+        themeColor: '#ba0108',
         msTileColor: '#000000',
         appleMobileWebAppCapable: 'yes',
         appleMobileWebAppStatusBarStyle: 'black',
         manifestOptions:{
             name: 'SeniorAssassin',
             short_name: 'Assassin',
-            start_url: '.',
+            start_url: '/',
             display: 'standalone'
         },
 
