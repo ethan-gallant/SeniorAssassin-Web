@@ -18,7 +18,8 @@ module.exports = {
     },
     plugins: [
         new CopyPlugin([
-            {from: 'src/assets/img/icons/*', to: 'img/icons/'}
+            {from: 'src/assets/img/icons/*', to: 'img/icons/'},
+            {from:'src/404.html'}
         ]),
     ],
 };
