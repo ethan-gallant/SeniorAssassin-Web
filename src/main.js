@@ -14,7 +14,6 @@ new Vue({
   router,
   store,
   mounted(){
-    console.log("test");
     // router.push({ path: '/' })
   },
   render: h => h(App)
