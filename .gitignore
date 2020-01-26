@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+/public
 /dist
 
 # local env files
@@ -82,3 +83,4 @@ node_modules/
 
 # dotenv environment variables file
 .env
+/public/
