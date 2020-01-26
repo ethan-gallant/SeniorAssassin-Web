@@ -16,9 +16,18 @@
         "function": "oauthCallback"
       },
       {
-        "source": "**",
+        "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/dashboard",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/dashboard/*",
         "destination": "/index.html"
       }
+
     ]
   }
 }

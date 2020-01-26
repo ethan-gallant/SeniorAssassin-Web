@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import InvalidEmail from "../views/error/InvalidEmail";
 import CustomError from "../views/error/CustomError";
+import notFound from "../views/error/404"
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/error',
     name: 'customerror',
     component: CustomError
+  },
+  {
+    path: '*',
+    name: 'notFound',
+    component: notFound
   },
 ]
 
