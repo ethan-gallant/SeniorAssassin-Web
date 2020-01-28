@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Cabin:400,500&display=swap');
   @font-face {
     font-family: 'mad_hackerregular';
     src: url('assets/fonts/mad_hacker/mad_hacker-webfont.woff2') format('woff2'),
@@ -28,7 +28,7 @@
   body {
     background-color: #111111;
     height: 100vh;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Cabin', sans-serif;
   }
   canvas {
     display: block;

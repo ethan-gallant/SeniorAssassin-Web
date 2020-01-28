@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import InvalidEmail from "../views/error/InvalidEmail";
 import CustomError from "../views/error/CustomError";
 import Dashboard from "../views/Dashboard";
+import Rules from "../views/Rules";
 import notFound from "../views/error/404"
 
 Vue.use(VueRouter)
@@ -28,6 +29,11 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard
+  },
+  {
+    path: '/rules',
+    name: 'rules',
+    component: Rules
   },
   {
     path: '*',

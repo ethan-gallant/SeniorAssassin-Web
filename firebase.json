@@ -28,6 +28,10 @@
         "destination": "/index.html"
       },
       {
+        "source": "/rules",
+        "destination": "/index.html"
+      },
+      {
         "source": "/error",
         "destination": "/index.html"
       }
