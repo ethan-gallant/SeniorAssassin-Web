@@ -32,6 +32,11 @@ module.exports = {
                     "src": "/img/icons/apple-icon.png",
                     "sizes": "512x512",
                     "type": "image/png"
+                },
+                {
+                    "src": "/img/icons/icon.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
                 }
             ],
         },
