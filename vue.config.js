@@ -25,11 +25,11 @@ module.exports = {
                 },
                 {
                     "src": "/img/icons/apple-icon-180x180.png",
-                    "sizes": "192x192",
+                    "sizes": "180x180",
                     "type": "image/png"
                 },
                 {
-                    "src": "/img/icons/apple-icon.png",
+                    "src": "/img/icons/apple-touch-icon.png",
                     "sizes": "512x512",
                     "type": "image/png"
                 },
