@@ -49,6 +49,11 @@
 </script>
 
 <style scoped>
+    .dashboard{
+        background-image: url("../assets/img/db-background.png");
+        background-size: cover;
+        min-height: 100vh;
+    }
     .Dashboard-title {
         padding-top: 10vh;
         width: 100%;
