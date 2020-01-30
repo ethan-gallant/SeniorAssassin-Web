@@ -8,8 +8,8 @@
     ],
     "rewrites": [
       {
-        "source": "/api/oauth-login",
-        "function": "oauthLogin"
+        "source": "/getOAuthURL",
+        "function": "getOAuthURL"
       },
       {
         "source": "/api/request-token",
