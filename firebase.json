@@ -16,6 +16,10 @@
         "function": "oauthCallback"
       },
       {
+        "source": "/api/game/current-target",
+        "function": "getCurrentTarget"
+      },
+      {
         "source": "/",
         "destination": "/index.html"
       },
