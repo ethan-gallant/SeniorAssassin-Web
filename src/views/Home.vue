@@ -3,7 +3,7 @@
         <div class="login has-text-centered">
             <h1 class=" mainHeader">SENIOR assassin</h1>
             <p>LOGIN WITH YOUR @LJCDS.ORG EMAIL</p>
-            <a href="/api/oauth-login">
+            <a href="/getOAuthURL">
             <img class="googleoauth" src="../assets/img/btn_google_signin_light_normal_web@2x.png" alt=""></a>
         </div>
 
