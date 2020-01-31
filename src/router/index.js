@@ -54,12 +54,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
-
+let _this = this;
 function isAuth() {
   let tempSession = null;
   let userInfo = null;
-  tempSession = this.$cookies.get("session").split('.');
-  userInfo = JSON.parse(atob(tempSession[1]));
+  tempSession = Vue.$cookies.get("session");
+  if(tempSession === null){
+    return false;
+  }
+  userInfo = JSON.parse(atob(tempSession.split('.')[1]));
   console.log(Date.now())
 
   if(tempSession === null || (Date.now()/1000) - 86400 > userInfo.iat){
@@ -76,7 +79,7 @@ router.beforeEach((to, from, next) => {
     if (!isAuth()) {
       next({
         path: '/getOAuthURL',
-        query: { redirect: to.fullPath }
+        // query: { redirect: to.fullPath }
       })
     } else {
       next()
