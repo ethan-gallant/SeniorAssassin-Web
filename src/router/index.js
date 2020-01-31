@@ -78,14 +78,17 @@ router.beforeEach((to, from, next) => {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     if (!isAuth()) {
+      console.log("not Authenticated")
       next({
         path: '/getOAuthURL',
         // query: { redirect: to.fullPath }
       })
     } else {
+      console.log("Authed")
       next()
     }
   } else {
+    console.log("no meta")
     next() // make sure to always call next()!
   }
 })
