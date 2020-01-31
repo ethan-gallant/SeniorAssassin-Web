@@ -54,7 +54,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
-let _this = this;
 function isAuth() {
   let tempSession = null;
   let userInfo = null;
@@ -63,7 +62,6 @@ function isAuth() {
     return false;
   }
   userInfo = JSON.parse(atob(tempSession.split('.')[1]));
-  console.log(Date.now())
 
   if((Date.now()/1000) - 86400 > userInfo.iat){
     return false;
@@ -79,16 +77,16 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to login page.
     if (!isAuth()) {
       console.log("not Authenticated")
-      next({
-        path: '/getOAuthURL',
-        // query: { redirect: to.fullPath }
-      })
+      window.location.href = '/getOAuthURL';
+      next();
     } else {
       console.log("Authed")
       next()
     }
   } else {
-    console.log("no meta")
+    console.log("false meta")
+    console.log(JSON.stringify(to) + "<-TO" );
+    console.log(JSON.stringify(from) + "<-FROM")
     next() // make sure to always call next()!
   }
 })
