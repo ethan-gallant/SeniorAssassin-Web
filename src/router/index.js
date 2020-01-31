@@ -65,7 +65,7 @@ function isAuth() {
   userInfo = JSON.parse(atob(tempSession.split('.')[1]));
   console.log(Date.now())
 
-  if(tempSession === null || (Date.now()/1000) - 86400 > userInfo.iat){
+  if((Date.now()/1000) - 86400 > userInfo.iat){
     return false;
   }//TODO: refresh current cookie
   return true;
