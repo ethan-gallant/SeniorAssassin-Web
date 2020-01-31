@@ -77,16 +77,16 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to login page.
     if (!isAuth()) {
       console.log("not Authenticated")
-      window.location.href = '/getOAuthURL';
-      next();
+      next({
+        path: '/',
+        // query: { redirect: to.fullPath }
+      })
     } else {
       console.log("Authed")
       next()
     }
   } else {
-    console.log("false meta")
-    console.log(JSON.stringify(to) + "<-TO" );
-    console.log(JSON.stringify(from) + "<-FROM")
+    console.log("no meta")
     next() // make sure to always call next()!
   }
 })
