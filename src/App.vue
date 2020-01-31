@@ -19,7 +19,7 @@
   }
   html{
     background-color: transparent;
-  }i
+  }
 
   * {
     margin: 0;
