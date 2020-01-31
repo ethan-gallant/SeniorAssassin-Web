@@ -68,6 +68,7 @@ function isAuth() {
   if(tempSession === null || (Date.now()/1000) - 86400 > userInfo.iat){
     return false;
   }//TODO: refresh current cookie
+  return true;
 
 }
 
