@@ -3,6 +3,9 @@
     <router-view/>
   </div>
 </template>
+<script>
+  export default {}
+</script>
 
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Cabin:400,500&display=swap');
@@ -16,7 +19,7 @@
   }
   html{
     background-color: transparent;
-  }
+  }i
 
   * {
     margin: 0;

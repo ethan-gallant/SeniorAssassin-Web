@@ -2,12 +2,13 @@
 import './../node_modules/bulma/bulma.sass';
 import './../node_modules/bulma-accordion/dist/css/bulma-accordion.min.css';
 import Vue from 'vue'
+import VueCookies from 'vue-cookies'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-
-
+Vue.use(VueCookies)
+Vue.$cookies.config('7d')
 
 Vue.config.productionTip = false
 

@@ -44,7 +44,26 @@
 
 <script>
     export default {
-        name: "Dashboard"
+        name: "Dashboard",
+        data: ()=>{
+            return{
+
+                tempSession: null,
+                userInfo: null,
+
+            }
+        },
+        mounted() {
+
+            this.tempSession = this.$cookies.get("session").split('.');
+            this.userInfo = JSON.parse(atob(this.tempSession[1]));
+            console.log(Date.now())
+
+            if(this.tempSession === null || (Date.now()/1000) - 86400 > this.userInfo.iat){
+                window.location.href = '/getOAuthURL'
+            }
+
+        }
     }
 </script>
 
