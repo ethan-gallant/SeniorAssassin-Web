@@ -58,14 +58,20 @@ function isAuth() {
   let tempSession = null;
   let userInfo = null;
   tempSession = Vue.$cookies.get("session");
+  console.log(tempSession)
   if(tempSession === null){
+    console.log("cookie is null")
     return false;
   }
   userInfo = JSON.parse(atob(tempSession.split('.')[1]));
+  console.log('user info' + JSON.stringify(userInfo))
 
   if((Date.now()/1000) - 86400 > userInfo.iat){
+    console.log("cookie out of date");
     return false;
+
   }//TODO: refresh current cookie
+  console.log("return true")
   return true;
 
 }
