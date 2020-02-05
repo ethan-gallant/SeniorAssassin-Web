@@ -10,7 +10,7 @@
                 </div>
                 <div class="column is-two-thirds target has-text-left-desktop">
                     <h2>Target: John Doe</h2><br>
-                    <a href="#" class="brk-btn">Hire A Teacher</a>
+                    <a href="#" class="brk-btn">Submit Assassination</a>
                 </div>
 
 
