@@ -3,7 +3,7 @@
         <div class="login has-text-centered">
             <h1 class=" mainHeader">SENIOR assassin</h1>
             <p>LOGIN WITH YOUR @LJCDS.ORG EMAIL</p>
-            <a href="/getOAuthURL">
+            <a @click="checkAuth()">
             <img class="googleoauth" src="../assets/img/btn_google_signin_light_normal_web@2x.png" alt=""></a>
         </div>
 
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+    import Vue from "vue";
+
     export default {
         name: "Home",
         mounted() {
@@ -81,6 +83,26 @@
             };
 
 
+        },
+        methods:{
+            checkAuth(){
+                    let tempSession = null;
+                    let userInfo = null;
+                    tempSession = Vue.$cookies.get("__session");
+                    if(tempSession === null){
+                        window.location.replace("/getoauthurl");
+                    }
+                    userInfo = JSON.parse(atob(tempSession.split('.')[1]));
+
+                    if((Date.now()/1000) - 86400 > userInfo.iat){
+                        window.location.replace("/getoauthurl");
+
+                    }//TODO: refresh current cookie
+                this.$router.push({ path: '/dashboard' })
+
+
+
+            }
         }
     }
 </script>
