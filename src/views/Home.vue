@@ -90,12 +90,12 @@
                     let userInfo = null;
                     tempSession = Vue.$cookies.get("__session");
                     if(tempSession === null){
-                        window.location.replace("/getoauthurl");
+                        window.location.replace("/getOAuthURL");
                     }
                     userInfo = JSON.parse(atob(tempSession.split('.')[1]));
 
                     if((Date.now()/1000) - 86400 > userInfo.iat){
-                        window.location.replace("/getoauthurl");
+                        window.location.replace("/getOAuthURL");
 
                     }//TODO: refresh current cookie
                 this.$router.push({ path: '/dashboard' })
