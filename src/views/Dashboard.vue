@@ -55,7 +55,7 @@
         name: "Dashboard",
         data: () => {
             return {
-                target: {}
+                target: {FirstName: "Loading", LastName: "Loading"}
 
             }
         },
@@ -69,7 +69,7 @@
             axios.get('https://seniorassassin.excl.dev/api/game/current-target', config)
                 .then(function (response) {
 
-                    _this.target = response
+                    _this.target = response.data
                 })
                 .catch(function (error) {
 
