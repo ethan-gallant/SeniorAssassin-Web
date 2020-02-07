@@ -5,9 +5,12 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-one-third">
-
-<!--                    <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>-->
-                    <img :src="target.url" alt="" class="picture">
+                    <div v-if="target.url === null">
+                        <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
+                    </div>
+                    <div v-else>
+                        <img :src="target.url" alt="" class="picture">
+                    </div>
 
                 </div>
                 <div class="column is-two-thirds target has-text-left-desktop">
@@ -47,11 +50,12 @@
 <script>
     import axios from 'axios'
     import Vue from "vue";
+
     export default {
         name: "Dashboard",
-        data: ()=>{
-            return{
-                target: null
+        data: () => {
+            return {
+                target: {}
 
             }
         },
@@ -77,11 +81,12 @@
 </script>
 
 <style scoped>
-    .dashboard{
+    .dashboard {
         background-image: url("../assets/img/db-background.png");
         background-size: cover;
         min-height: 100vh;
     }
+
     .Dashboard-title {
         padding-top: 10vh;
         width: 100%;
@@ -92,7 +97,8 @@
     .nopicture {
         width: 50%;
     }
-    .picture{
+
+    .picture {
         width: 50%;
     }
 
