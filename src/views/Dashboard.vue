@@ -6,10 +6,11 @@
             <div class="columns">
                 <div class="column is-one-third">
                     <div v-if="target && target.url" >
-                        <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
+                        <img :src="target.url" alt="" class="picture">
                     </div>
                     <div v-else>
-                        <img :src="target.url" alt="" class="picture">
+                        <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
+
                     </div>
 
                 </div>
@@ -66,15 +67,15 @@
                     'Authorization': 'Bearer ' + Vue.$cookies.get("__session")
                 }
             }
-            axios.get('https://seniorassassin.excl.dev/api/game/current-target', config)
-                .then(function (response) {
-
-                    _this.target = response.data
-                })
-                .catch(function (error) {
-
-                    _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
-                })
+            // axios.get('https://seniorassassin.excl.dev/api/game/current-target', config)
+            //     .then(function (response) {
+            //
+            //         _this.target = response.data
+            //     })
+            //     .catch(function (error) {
+            //
+            //         _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
+            //     })
 
         }
     }
