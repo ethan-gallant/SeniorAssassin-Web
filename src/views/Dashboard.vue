@@ -5,7 +5,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-one-third">
-                    <div v-if="target && target.url" >
+                    <div v-if="target">
                         <img :src="target.url" alt="" class="picture">
                     </div>
                     <div v-else>
@@ -15,7 +15,9 @@
 
                 </div>
                 <div class="column is-two-thirds target has-text-left-desktop">
-                    <h2>Target: {{target.FirstName}} {{target.LastName}}</h2><br>
+                    <div v-if="target">
+                        <h2>Target: {{target.FirstName}} {{target.LastName}}</h2><br>
+                    </div>
                     <a href="#" class="brk-btn">Submit Assassination</a>
                 </div>
 
@@ -56,7 +58,7 @@
         name: "Dashboard",
         data: () => {
             return {
-                target: {FirstName: "Loading", LastName: "Loading"}
+                target: null
 
             }
         },
