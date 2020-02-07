@@ -5,7 +5,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-one-third">
-                    <div v-if="target.url === null">
+                    <div v-if="target && target.url" >
                         <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
                     </div>
                     <div v-else>
