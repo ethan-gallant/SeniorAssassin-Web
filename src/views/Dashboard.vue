@@ -17,8 +17,9 @@
                 <div class="column is-two-thirds target has-text-left-desktop">
                     <div v-if="target">
                         <h2>Target: {{target.FirstName}} {{target.LastName}}</h2><br>
-                    </div>
+
                     <a href="#" class="brk-btn">Submit Assassination</a>
+                    </div>
                 </div>
 
 
