@@ -6,10 +6,12 @@
             <div class="columns">
                 <div class="column is-one-third">
 
-                    <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
+<!--                    <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>-->
+                    <img :src="target.url" alt="" class="picture">
+
                 </div>
                 <div class="column is-two-thirds target has-text-left-desktop">
-                    <h2>Target: John Doe</h2><br>
+                    <h2>Target: {{target.FirstName}} {{target.LastName}}</h2><br>
                     <a href="#" class="brk-btn">Submit Assassination</a>
                 </div>
 
@@ -34,7 +36,7 @@
 
                 <div class="column">
                     <div class="btn-wrapper">
-                        <a href="#" class="brk-btn-grey brk-btn">Rules</a>
+                        <router-link to="/rules" class="brk-btn-grey brk-btn">Rules</router-link>
                     </div>
                 </div>
             </div>
@@ -43,17 +45,32 @@
 </template>
 
 <script>
+    import axios from 'axios'
+    import Vue from "vue";
     export default {
         name: "Dashboard",
         data: ()=>{
             return{
-
-                tempSession: null,
-                userInfo: null,
+                target: null
 
             }
         },
         mounted() {
+            let _this = this;
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + Vue.$cookies.get("__session")
+                }
+            }
+            axios.get('https://seniorassassin.excl.dev/api/game/current-target', config)
+                .then(function (response) {
+
+                    _this.target = response
+                })
+                .catch(function (error) {
+
+                    _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
+                })
 
         }
     }
@@ -73,6 +90,9 @@
     }
 
     .nopicture {
+        width: 50%;
+    }
+    .picture{
         width: 50%;
     }
 

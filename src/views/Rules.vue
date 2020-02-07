@@ -6,6 +6,11 @@
 
                 <p>Rules are at the discretion Josie Rooney and Mr. Jenkins. You will be disqualified if you break any
                     of these rules, laws or any rules of LJCDS</p>
+                <div class="column">
+                    <div class="btn-wrapper">
+                        <router-link to="/dashboard" class="brk-btn-grey brk-btn">Return to Dashboard</router-link>
+                    </div>
+                </div>
             </div>
 
             <section class="accordions">
