@@ -38,6 +38,10 @@
       {
         "source": "/error",
         "destination": "/index.html"
+      },
+      {
+        "source":  "/api/game/all-targets",
+        "function": "getAllTargets"
       }
     ]
   }
