@@ -90,7 +90,7 @@
                     let userInfo = null;
                     tempSession = Vue.$cookies.get("session");
                     if(tempSession === null){
-                        window.location.replace("saapi.excl.dev/auth/login");
+                        window.location.replace("https://saapi.excl.dev/auth/login");
                     }
                     userInfo = JSON.parse(atob(tempSession.split('.')[1]));
 
