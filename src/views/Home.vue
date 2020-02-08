@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div class="pageloader is-dark" :class="{'is-active': loading}"><span class="title">Redirecting Please Wait</span></div>
         <div class="login has-text-centered">
             <h1 class=" mainHeader">SENIOR assassin</h1>
             <p>LOGIN WITH YOUR @LJCDS.ORG EMAIL</p>
@@ -16,6 +17,11 @@
 
     export default {
         name: "Home",
+        data: ()=>{
+            return{
+                loading: false
+            }
+        },
         mounted() {
 // geting canvas by Boujjou Achraf
             let c = document.getElementById("c");
@@ -86,6 +92,7 @@
         },
         methods:{
             checkAuth(){
+                this.loading = true;
                     let tempSession = null;
                     let userInfo = null;
                     tempSession = Vue.$cookies.get("session");
@@ -95,7 +102,7 @@
                     userInfo = JSON.parse(atob(tempSession.split('.')[1]));
 
                     if((Date.now()/1000) - 86400 > userInfo.iat){
-                        window.location.replace("/getOAuthURL");
+                        window.location.replace("https://saapi.excl.dev/auth/login");
 
                     }//TODO: refresh current cookie
                 this.$router.push({ path: '/dashboard' })
