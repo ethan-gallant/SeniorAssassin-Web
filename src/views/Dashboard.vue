@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="columns">
                     <div class="column is-one-third">
-                        <div v-if="target || !target.photo_hidden">
+                        <div v-if="target || !hidePhoto">
                             <img :src="target.url" alt="" class="picture">
                         </div>
                         <div v-else>
@@ -63,6 +63,7 @@
         data: () => {
             return {
                 target: null,
+                hidePhoto: false,
                 loading: false
 
             }
@@ -79,6 +80,7 @@
                 .then(function (response) {
 
                     _this.target = response.data;
+                    _this.hidePhoto = response.data.photo_hidden;
                     _this.loading = false;
                 })
                 .catch(function (error) {
