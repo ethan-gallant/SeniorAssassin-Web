@@ -75,10 +75,10 @@
                 }
             }
             this.loading = true
-            axios.get('https://saapi.excl.dev/api/game/current-target', config)
+            axios.get('https://saapi.excl.dev/me/targets/current', config)
                 .then(function (response) {
 
-                    _this.target = response.data
+                    _this.target = response.data;
                     _this.loading = false;
                 })
                 .catch(function (error) {
