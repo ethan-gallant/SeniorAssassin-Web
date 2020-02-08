@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="btn-wrapper">
-            <a href="#" class="brk-btn brk-btn-green">Return To Dashboard</a>
+            <router-link to="/dashboard" class="brk-btn brk-btn-green">Return To Dashboard</router-link>
         </div>
     </div>
 </template>
