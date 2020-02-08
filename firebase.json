@@ -21,6 +21,10 @@
         "destination": "/index.html"
       },
       {
+        "source": "/shop",
+        "destination": "/index.html"
+      },
+      {
         "source": "/dashboard/*",
         "destination": "/index.html"
       },
