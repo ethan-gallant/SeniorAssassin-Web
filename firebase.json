@@ -8,7 +8,7 @@
     ],
     "rewrites": [
       {
-        "source": "/setToken",
+        "source": "/settoken",
         "destination": "/index.html"
       },
 
