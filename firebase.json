@@ -8,21 +8,10 @@
     ],
     "rewrites": [
       {
-        "source": "/getOAuthURL",
-        "function": "getOAuthURL"
+        "source": "/setToken",
+        "destination": "/index.html"
       },
-      {
-        "source": "/api/request-token",
-        "function": "oauthCallback"
-      },
-      {
-        "source": "/api/game/current-target",
-        "function": "getCurrentTarget"
-      },
-      {
-        "source":  "/api/game/all-targets",
-        "function": "getAllTargets"
-      },
+
       {
         "source": "/",
         "destination": "/index.html"

@@ -88,9 +88,9 @@
             checkAuth(){
                     let tempSession = null;
                     let userInfo = null;
-                    tempSession = Vue.$cookies.get("__session");
+                    tempSession = Vue.$cookies.get("session");
                     if(tempSession === null){
-                        window.location.replace("/getOAuthURL");
+                        window.location.replace("saapi.excl.dev/auth/login");
                     }
                     userInfo = JSON.parse(atob(tempSession.split('.')[1]));
 

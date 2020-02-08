@@ -1,5 +1,6 @@
 
 import './../node_modules/bulma/bulma.sass';
+import './../node_modules/bulma-pageloader/dist/css/bulma-pageloader.min.css';
 import './../node_modules/bulma-accordion/dist/css/bulma-accordion.min.css';
 import Vue from 'vue'
 import VueCookies from 'vue-cookies'

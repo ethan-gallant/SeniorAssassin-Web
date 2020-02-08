@@ -1,49 +1,52 @@
 <template>
-    <div class="dashboard has-text-centered">
-        <h1 class="Dashboard-title">sENIOR aSSASSIN</h1>
+    <div>
+        <div class="pageloader is-dark" :class="{'is-active': loading}"><span class="title">Logging In Please Wait</span></div>
+        <div class="dashboard has-text-centered">
+            <h1 class="Dashboard-title">sENIOR aSSASSIN</h1>
 
-        <div class="container">
-            <div class="columns">
-                <div class="column is-one-third">
-                    <div v-if="target">
-                        <img :src="target.url" alt="" class="picture">
-                    </div>
-                    <div v-else>
-                        <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-one-third">
+                        <div v-if="target">
+                            <img :src="target.url" alt="" class="picture">
+                        </div>
+                        <div v-else>
+                            <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
+
+                        </div>
 
                     </div>
+                    <div class="column is-two-thirds target has-text-left-desktop">
+                        <div v-if="target">
+                            <h2>Target: {{target.FirstName}} {{target.LastName}}</h2><br>
+
+                            <a href="#" class="brk-btn">Submit Assassination</a>
+                        </div>
+                    </div>
+
 
                 </div>
-                <div class="column is-two-thirds target has-text-left-desktop">
-                    <div v-if="target">
-                        <h2>Target: {{target.FirstName}} {{target.LastName}}</h2><br>
-
-                    <a href="#" class="brk-btn">Submit Assassination</a>
+                <div class="columns">
+                    <div class="column">
+                        <div class="btn-wrapper">
+                            <a href="#" class="brk-btn brk-btn-gold">Shop</a>
+                        </div>
                     </div>
-                </div>
-
-
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="btn-wrapper">
-                        <a href="#" class="brk-btn brk-btn-gold">Shop</a>
+                    <div class="column">
+                        <div class="btn-wrapper">
+                            <a href="#" class="brk-btn-red brk-btn">Open targets</a>
+                        </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="btn-wrapper">
-                        <a href="#" class="brk-btn-red brk-btn">Open targets</a>
+                    <div class="column">
+                        <div class="btn-wrapper">
+                            <a href="#" class="brk-btn-blue brk-btn">Stats</a>
+                        </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="btn-wrapper">
-                        <a href="#" class="brk-btn-blue brk-btn">Stats</a>
-                    </div>
-                </div>
 
-                <div class="column">
-                    <div class="btn-wrapper">
-                        <router-link to="/rules" class="brk-btn-grey brk-btn">Rules</router-link>
+                    <div class="column">
+                        <div class="btn-wrapper">
+                            <router-link to="/rules" class="brk-btn-grey brk-btn">Rules</router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,7 +62,8 @@
         name: "Dashboard",
         data: () => {
             return {
-                target: null
+                target: null,
+                loading: false
 
             }
         },
@@ -67,13 +71,15 @@
             let _this = this;
             let config = {
                 headers: {
-                    'Authorization': 'Bearer ' + Vue.$cookies.get("__session")
+                    'Authorization': 'Bearer ' + Vue.$cookies.get("session")
                 }
             }
-            axios.get('https://seniorassassin.excl.dev/api/game/current-target', config)
+            this.loading = true
+            axios.get('https://saapi.excl.dev/api/game/current-target', config)
                 .then(function (response) {
 
                     _this.target = response.data
+                    _this.loading = false;
                 })
                 .catch(function (error) {
 

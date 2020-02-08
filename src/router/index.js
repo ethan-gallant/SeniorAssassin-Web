@@ -6,6 +6,7 @@ import CustomError from "../views/error/CustomError";
 import Dashboard from "../views/Dashboard";
 import Rules from "../views/Rules";
 import notFound from "../views/error/404"
+import SetToken from "../views/SetToken";
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,12 @@ const routes = [
     path: '/invalidemail',
     name: 'invalidemail',
     component: InvalidEmail,
+    meta: {requiresAuth: false}
+  },
+  {
+    path: '/settoken',
+    name: 'settoken',
+    component: SetToken,
     meta: {requiresAuth: false}
   },
   {
@@ -61,7 +68,7 @@ router.beforeEach((to, from, next) => {
   function isAuth() {
     let tempSession = null;
     let userInfo = null;
-    tempSession = Vue.$cookies.get("__session");
+    tempSession = Vue.$cookies.get("session");
     if(tempSession === null){
       return false;
     }

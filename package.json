@@ -10,6 +10,7 @@
     "axios": "^0.19.2",
     "bulma": "^0.8.0",
     "bulma-accordion": "^2.0.1",
+    "bulma-pageloader": "^0.3.0",
     "copy-webpack-plugin": "^5.1.1",
     "core-js": "^3.4.4",
     "node-sass": "^4.13.0",
