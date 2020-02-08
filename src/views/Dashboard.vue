@@ -29,7 +29,7 @@
                 <div class="columns">
                     <div class="column">
                         <div class="btn-wrapper">
-                            <a href="#" class="brk-btn brk-btn-gold">Shop</a>
+                            <router-link to="/shop" class="brk-btn brk-btn-gold">Shop</router-link>
                         </div>
                     </div>
                     <div class="column">
