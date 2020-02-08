@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div class="pageloader is-dark" :class="{'is-active': loading}"><span class="title">Logging In Please Wait</span></div>
+        <div class="pageloader is-dark" :class="{'is-active': loading}"><span class="title">Getting Target</span></div>
         <div class="dashboard has-text-centered">
             <h1 class="Dashboard-title">sENIOR aSSASSIN</h1>
 
             <div class="container">
                 <div class="columns">
                     <div class="column is-one-third">
-                        <div v-if="target">
+                        <div v-if="target || !target.photo_hidden">
                             <img :src="target.url" alt="" class="picture">
                         </div>
                         <div v-else>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="column is-two-thirds target has-text-left-desktop">
                         <div v-if="target">
-                            <h2>Target: {{target.FirstName}} {{target.LastName}}</h2><br>
+                            <h2>Target: {{target.name_first}} {{target.name_last}}</h2><br>
 
                             <a href="#" class="brk-btn">Submit Assassination</a>
                         </div>
