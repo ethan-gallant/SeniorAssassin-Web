@@ -7,6 +7,7 @@ import Dashboard from "../views/Dashboard";
 import Rules from "../views/Rules";
 import notFound from "../views/error/404"
 import SetToken from "../views/SetToken";
+import Shop from "../views/Shop";
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,12 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard,
+    meta: {requiresAuth: true}
+  },
+  {
+    path: '/shop',
+    name: 'shop',
+    component: Shop,
     meta: {requiresAuth: true}
   },
   {
