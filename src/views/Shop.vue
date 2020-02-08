@@ -47,18 +47,7 @@
         data: () => {
             return {
                 loading: false,
-                products: {
-                    "hidden-photo": {
-                        "name": "Hidden Photo",
-                        "description": "Hide your photo so other assassins can't see it!",
-                        "cost": 5
-                    },
-                    "teacher-assassin": {
-                        "name": "Teacher Assassin",
-                        "description": "Hire a teacher to help you do your dirty work. Once the teacher is chosen they will remain your hired assassin until your target is eliminated.",
-                        "cost": 10
-                    }
-                },
+                products: null
             }
 
         },
