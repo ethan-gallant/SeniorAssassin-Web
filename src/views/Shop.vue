@@ -1,31 +1,19 @@
 <template>
     <div>
         <div class="pageloader is-dark" :class="{'is-active': loading}"><span class="title">Loading Shop</span></div>
-        <div class="has-text-centered shop">
+        <div v-if="products || user" class="has-text-centered shop">
             <div class="shop-header">
                 <h1>Shop</h1>
             </div>
-            <div class="columns" v-if="products">
+            <img src="../assets/img/shop/hide.png" class="shop-icon" alt="" style="display:none;">
+            <img src="../assets/img/shop/school.png" class="shop-icon" alt="" style="display:none;">
+            <img src="../assets/img/shop/search.png" class="shop-icon" alt="" style="display:none;">
+            <div class="columns" v-for="product in products">
                 <div class="column">
-                    <img src="../assets/img/shop/hide.png" class="shop-icon" alt="">
-                    <h2 class="shop-desc">Hide Your Picture</h2>
-                    <p class="shop-cost">Cost: {{products["hidden-photo"].cost}}</p>
-                    <div class="btn-wrapper">
-                        <a href="#" class="brk-btn brk-btn-gold">Purchase</a>
-                    </div>
-                </div>
-                <div class="column">
-                    <img src="../assets/img/shop/school.png" alt="" class="shop-icon">
-                    <h2 class="shop-desc">Hire A Teacher</h2>
-                    <p class="shop-cost">Cost: {{products["teacher-assassin"].cost}}</p>
-                    <div class="btn-wrapper">
-                        <a href="#" class="brk-btn brk-btn-gold">Purchase</a>
-                    </div>
-                </div>
-                <div class="column">
-                    <img src="../assets/img/shop/search.png" alt="" class="shop-icon">
-                    <p class="shop-desc">See who's your assassinator</p>
-                    <p class="shop-cost">Cost: {{products["teacher-assassin"].cost}}</p>
+                    <img :src="'img/' + product.image + '.png'" class="shop-icon" alt="">
+                    <h2 class="shop-desc">{{product.name}}</h2>
+                    <p class="shop-about">{{product.description}}</p>
+                    <p class="shop-cost">Cost: {{product.cost}}</p>
                     <div class="btn-wrapper">
                         <a href="#" class="brk-btn brk-btn-gold">Purchase</a>
                     </div>
@@ -46,7 +34,8 @@
         data: () => {
             return {
                 loading: false,
-                products: null
+                products: null,
+                user: null,
             }
 
         },
@@ -60,14 +49,24 @@
             this.loading = true
             axios.get('https://saapi.excl.dev/shop/products', config)
                 .then(function (response) {
-
+                    console.log("products" + JSON.stringify(response.data))
                     _this.products = response.data;
-                    _this.loading = false;
+                    axios.get('https://saapi.excl.dev/me', config)
+                        .then(function (response) {
+                            console.log("me" + JSON.stringify(response))
+                            _this.user = response.data;
+                            _this.loading = false;
+                        })
+                        .catch(function (error) {
+
+                            _this.$router.push({path: '/error?title=Error&message=Shop was unable to load please try again and if issue persists contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
+                        })
                 })
                 .catch(function (error) {
 
                     _this.$router.push({path: '/error?title=Error&message=Shop was unable to load please try again and if issue persists contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
                 })
+
         }
     }
 </script>
@@ -96,7 +95,7 @@
 
     }
 
-    .shop-desc {
+    .shop-desc, .shop-about {
         font-size: 1.2em;
     }
 </style>
