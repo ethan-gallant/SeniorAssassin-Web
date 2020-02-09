@@ -5,7 +5,7 @@
             <h1 class="Dashboard-title">sENIOR aSSASSIN</h1>
 
             <div class="container">
-                <div class="columns">
+                <div v-if="hasTarget" class="columns">
                     <div class="column is-one-third">
 
                             <img v-if="!hidePhoto" :src="url" alt="" class="picture">
@@ -62,9 +62,10 @@
         data: () => {
             return {
                 target: null,
-                url: 'img/nopicture.jpg',
+                url: '#',
                 hidePhoto: false,
-                loading: false
+                loading: false,
+                hasTarget: false,
 
             }
         },
@@ -79,6 +80,13 @@
             axios.get('https://saapi.excl.dev/me/targets/current', config)
                 .then(function (response) {
                 console.log(response)
+                    if(!response.data){
+                        _this.loading = false;
+                        _this.hasTarget = false;
+                        return;
+
+                    }
+                    _this.hasTarget = true;
                     _this.target = response.data;
                     _this.url = response.data.url;
                     _this.hidePhoto = response.data.photo_hidden;

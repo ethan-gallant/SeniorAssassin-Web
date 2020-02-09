@@ -64,7 +64,7 @@
                     ).then(function (response) {
                         _this.loading = false;
                         Swal.fire('Congrats', 'Kill Submitted Please Wait for Approval', 'success').then(() =>{
-                            this.$router.push({path: '/dashboard'})
+                            _this.$router.push({path: '/dashboard'})
                         })
                     })
                         .catch(function (error) {
