@@ -7,7 +7,7 @@
             </div>
             <div class="columns" v-for="product in products">
                 <div class="column">
-                    <img :src="'img/shop' + product.image + '.png'" class="shop-icon" alt="">
+                    <img :src="'img/shop/' + product.image + '.png'" class="shop-icon" alt="">
                     <h2 class="shop-desc">{{product.name}}</h2>
                     <p class="shop-about">{{product.description}}</p>
                     <p class="shop-cost">Cost: {{product.cost}}</p>
