@@ -5,7 +5,7 @@
             <h1 class="Dashboard-title">sENIOR aSSASSIN</h1>
 
             <div class="container">
-                <div v-if="hasTarget" class="columns">
+                <div v-if="hasTarget || !dead" class="columns">
                     <div class="column is-one-third">
 
                             <img v-if="!hidePhoto" :src="url" alt="" class="picture">
@@ -27,22 +27,21 @@
 
 
                 </div>
+                <div v-if="dead">
+                    <h1 class="has-text-centered">Your are dead</h1>
+                </div>
                 <div class="columns">
                     <div class="column">
                         <div class="btn-wrapper">
                             <router-link to="/shop" class="brk-btn brk-btn-gold">Shop</router-link>
                         </div>
                     </div>
-                    <div class="column">
-                        <div class="btn-wrapper">
-                            <a href="#" class="brk-btn-red brk-btn">Open targets</a>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="btn-wrapper">
-                            <a href="#" class="brk-btn-blue brk-btn">Stats</a>
-                        </div>
-                    </div>
+
+<!--                    <div class="column">-->
+<!--                        <div class="btn-wrapper">-->
+<!--                            <a href="#" class="brk-btn-blue brk-btn">Stats</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <div class="column">
                         <div class="btn-wrapper">
@@ -57,6 +56,7 @@
 
 <script>
     import axios from 'axios'
+    import Swal from 'sweetalert2/src/sweetalert2.js'
     export default {
         name: "Dashboard",
         data: () => {
@@ -66,6 +66,7 @@
                 hidePhoto: false,
                 loading: false,
                 hasTarget: false,
+                dead: false,
 
             }
         },
@@ -77,6 +78,13 @@
                 }
             }
             this.loading = true
+            axios.get('https://saapi.excl.dev/me/', config).then((response)=>{
+                _this.dead = response.data.dead
+            }).catch(()=>{
+                Swal.fire('Failed', 'Unable to load user', 'error').then(() =>{
+                    _this.$router.push({path: '/'})
+                })
+            })
             axios.get('https://saapi.excl.dev/me/targets/current', config)
                 .then(function (response) {
                 console.log(response)
@@ -95,7 +103,7 @@
                 })
                 .catch(function (error) {
 console.log(error)
-                    // _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
+                    _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
                 })
 
         }

@@ -10,7 +10,7 @@
     </div>
 </div>
       <div class="level">
-          <a @click="submitFile()" class="brk-btn submit-button">Submit</a>
+          <a v-if="file" @click="submitFile()" class="brk-btn submit-button">Submit</a>
 
 
 

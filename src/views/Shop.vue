@@ -75,6 +75,7 @@ let _this = this;
                     headers: {
                         'Authorization': 'Bearer ' + this.$cookies.get("session")
                     }}).then((response) =>{
+                    console.log(response)
                         if(response.data.err){
                             Swal.fire('Failed', response.data.err, 'error').then(() =>{
                                 _this.$router.push({path: '/dashboard'})
@@ -85,7 +86,7 @@ let _this = this;
                     Swal.fire('Congrats', 'Item Purchased', 'success').then(() =>{
                         _this.$router.push({path: '/dashboard'})
                     })
-                    console.log(response)
+
                 }).catch((error) =>{
                     Swal.fire('Failed', 'Something Went Wrong Please Try Again later', 'error').then(() =>{
                         _this.$router.push({path: '/dashboard'})
