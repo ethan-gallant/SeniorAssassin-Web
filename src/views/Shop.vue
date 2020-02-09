@@ -5,12 +5,9 @@
             <div class="shop-header">
                 <h1>Shop</h1>
             </div>
-            <img src="../assets/img/shop/hide.png" class="shop-icon" alt="" style="display:none;">
-            <img src="../assets/img/shop/school.png" class="shop-icon" alt="" style="display:none;">
-            <img src="../assets/img/shop/search.png" class="shop-icon" alt="" style="display:none;">
             <div class="columns" v-for="product in products">
                 <div class="column">
-                    <img :src="'img/' + product.image + '.png'" class="shop-icon" alt="">
+                    <img :src="'img/shop' + product.image + '.png'" class="shop-icon" alt="">
                     <h2 class="shop-desc">{{product.name}}</h2>
                     <p class="shop-about">{{product.description}}</p>
                     <p class="shop-cost">Cost: {{product.cost}}</p>
