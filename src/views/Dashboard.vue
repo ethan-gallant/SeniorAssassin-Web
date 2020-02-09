@@ -56,8 +56,6 @@
 
 <script>
     import axios from 'axios'
-    import Vue from "vue";
-
     export default {
         name: "Dashboard",
         data: () => {
@@ -72,7 +70,7 @@
             let _this = this;
             let config = {
                 headers: {
-                    'Authorization': 'Bearer ' + Vue.$cookies.get("session")
+                    'Authorization': 'Bearer ' + _this.$cookies.get("session")
                 }
             }
             this.loading = true

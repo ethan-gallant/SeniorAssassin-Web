@@ -8,6 +8,8 @@ import Rules from "../views/Rules";
 import notFound from "../views/error/404"
 import SetToken from "../views/SetToken";
 import Shop from "../views/Shop";
+import OpenTargets from "../views/OpenTargets";
+import SubmitKill from "../views/SubmitKill";
 
 Vue.use(VueRouter)
 
@@ -46,6 +48,18 @@ const routes = [
     path: '/shop',
     name: 'shop',
     component: Shop,
+    meta: {requiresAuth: true}
+  },
+  {
+    path: '/submitkill',
+    name: 'submitkill',
+    component: SubmitKill,
+    meta: {requiresAuth: false}
+  },
+  {
+    path: '/openTargets',
+    name: 'opentargets',
+    component: OpenTargets,
     meta: {requiresAuth: true}
   },
   {

@@ -11,6 +11,14 @@
         "source": "/settoken",
         "destination": "/index.html"
       },
+      {
+        "source": "/submitkill",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/openTargets",
+        "destination": "/index.html"
+      },
 
       {
         "source": "/",
