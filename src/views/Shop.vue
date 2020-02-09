@@ -39,7 +39,6 @@
 </template>
 
 <script>
-    import Vue from "vue";
     import axios from "axios";
 
     export default {
@@ -55,7 +54,7 @@
             let _this = this;
             let config = {
                 headers: {
-                    'Authorization': 'Bearer ' + Vue.$cookies.get("session")
+                    'Authorization': 'Bearer ' + this.$cookies.get("session")
                 }
             }
             this.loading = true

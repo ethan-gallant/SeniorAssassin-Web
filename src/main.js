@@ -8,6 +8,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import '@sweetalert2/theme-borderless/borderless.min.css'
 Vue.use(VueCookies)
 Vue.$cookies.config('7d')
 

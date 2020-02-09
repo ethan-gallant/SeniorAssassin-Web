@@ -7,20 +7,21 @@
             <div class="container">
                 <div class="columns">
                     <div class="column is-one-third">
-                        <div v-if="target || !hidePhoto">
-                            <img :src="target.url" alt="" class="picture">
-                        </div>
-                        <div v-else>
-                            <img class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
 
-                        </div>
+                            <img v-if="!hidePhoto" :src="url" alt="" class="picture">
+
+
+                            <img v-if="hidePhoto" class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
+
 
                     </div>
                     <div class="column is-two-thirds target has-text-left-desktop">
                         <div v-if="target">
                             <h2>Target: {{target.name_first}} {{target.name_last}}</h2><br>
 
-                            <a href="#" class="brk-btn">Submit Assassination</a>
+
+                            <router-link v-if="!killed" to="/submitKill" class="brk-btn">Submit Assassination</router-link>
+                            <p v-else>Pending Approval</p>
                         </div>
                     </div>
 
@@ -61,6 +62,7 @@
         data: () => {
             return {
                 target: null,
+                url: 'img/nopicture.jpg',
                 hidePhoto: false,
                 loading: false
 
@@ -76,14 +78,16 @@
             this.loading = true
             axios.get('https://saapi.excl.dev/me/targets/current', config)
                 .then(function (response) {
-
+                console.log(response)
                     _this.target = response.data;
+                    _this.url = response.data.url;
                     _this.hidePhoto = response.data.photo_hidden;
+                    _this.killed = response.data.killed;
                     _this.loading = false;
                 })
                 .catch(function (error) {
-
-                    _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
+console.log(error)
+                    // _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
                 })
 
         }
