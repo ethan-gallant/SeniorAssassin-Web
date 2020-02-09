@@ -38,7 +38,6 @@
             }
         },
         mounted() {
-
         },
         methods: {
             submitFile() {

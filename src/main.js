@@ -8,9 +8,9 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import '@sweetalert2/theme-borderless/borderless.min.css'
+import '@sweetalert2/theme-borderless/borderless.scss'
 Vue.use(VueCookies)
-Vue.$cookies.config('7d')
+Vue.$cookies.config('1d')
 
 Vue.config.productionTip = false
 
