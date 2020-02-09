@@ -1,18 +1,20 @@
 <template>
     <div>
         <div class="pageloader is-dark" :class="{'is-active': loading}"><span class="title">Loading Shop</span></div>
-        <div v-if="products || user" class="has-text-centered shop">
+        <div v-if="products" class="has-text-centered shop">
             <div class="shop-header">
                 <h1>Shop</h1>
+                <p>Current Balance: {{balance}}</p>
             </div>
-            <div class="columns" v-for="product in products">
+            <div class="columns" v-for="(product, index) in products">
                 <div class="column">
                     <img :src="'img/shop/' + product.image + '.png'" class="shop-icon" alt="">
                     <h2 class="shop-desc">{{product.name}}</h2>
                     <p class="shop-about">{{product.description}}</p>
                     <p class="shop-cost">Cost: {{product.cost}}</p>
                     <div class="btn-wrapper">
-                        <a href="#" class="brk-btn brk-btn-gold">Purchase</a>
+                        <a v-if="product.cost <= balance" href="#" @click="purchase(index)"
+                           class="brk-btn brk-btn-gold">Purchase</a>
                     </div>
                 </div>
             </div>
@@ -25,6 +27,7 @@
 
 <script>
     import axios from "axios";
+    import Swal from 'sweetalert2/src/sweetalert2.js'
 
     export default {
         name: "Shop",
@@ -32,7 +35,7 @@
             return {
                 loading: false,
                 products: null,
-                user: null,
+                balance: 0,
             }
 
         },
@@ -51,7 +54,7 @@
                     axios.get('https://saapi.excl.dev/me', config)
                         .then(function (response) {
                             console.log("me" + JSON.stringify(response))
-                            _this.user = response.data;
+                            _this.balance = response.data.balance;
                             _this.loading = false;
                         })
                         .catch(function (error) {
@@ -64,6 +67,32 @@
                     _this.$router.push({path: '/error?title=Error&message=Shop was unable to load please try again and if issue persists contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
                 })
 
+        },
+        methods: {
+            purchase(item) {
+let _this = this;
+                axios.post('https://saapi.excl.dev/shop/buy/' + item, {}, {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$cookies.get("session")
+                    }}).then((response) =>{
+                        if(response.data.err){
+                            Swal.fire('Failed', response.data.err, 'error').then(() =>{
+                                _this.$router.push({path: '/dashboard'})
+
+                            })
+                            return;
+                        }
+                    Swal.fire('Congrats', 'Item Purchased', 'success').then(() =>{
+                        _this.$router.push({path: '/dashboard'})
+                    })
+                    console.log(response)
+                }).catch((error) =>{
+                    Swal.fire('Failed', 'Something Went Wrong Please Try Again later', 'error').then(() =>{
+                        _this.$router.push({path: '/dashboard'})
+                    })
+                })
+
+            }
         }
     }
 </script>
@@ -94,5 +123,9 @@
 
     .shop-desc, .shop-about {
         font-size: 1.2em;
+    }
+
+    .shop-header p {
+        font-size: .5em;
     }
 </style>
