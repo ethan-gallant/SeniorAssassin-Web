@@ -10,6 +10,7 @@ import SetToken from "../views/SetToken";
 import Shop from "../views/Shop";
 import OpenTargets from "../views/OpenTargets";
 import SubmitKill from "../views/SubmitKill";
+import PendingKills from "../views/admin/PendingKills";
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,12 @@ const routes = [
     meta: {requiresAuth: true}
   },
   {
+    path: '/admin/PendingKills',
+    name: 'pendingkills',
+    component: PendingKills,
+    meta: {requiresAuth: true, requiresAdmin: true}
+  },
+  {
     path: '*',
     name: 'notFound',
     component: notFound,
@@ -105,6 +112,16 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
+    if (to.matched.some(record => record.meta.requiresAdmin)){
+      if(JSON.parse(atob(Vue.$cookies.get("session").split('.')[1])).is_admin){
+        next()
+      }else{
+        next({
+          path: '/',
+          // query: { redirect: to.fullPath }
+        })
+      }
+    }
     if (!isAuth()) {
       next({
         path: '/',

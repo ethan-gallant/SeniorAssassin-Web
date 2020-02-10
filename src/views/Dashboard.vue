@@ -5,7 +5,7 @@
             <h1 class="Dashboard-title">sENIOR aSSASSIN</h1>
 
             <div class="container">
-                <div v-if="hasTarget || !dead" class="columns">
+                <div v-if="hasTarget" class="columns">
                     <div class="column is-one-third">
 
                             <img v-if="!hidePhoto" :src="url" alt="" class="picture">
@@ -15,7 +15,7 @@
 
 
                     </div>
-                    <div class="column is-two-thirds target has-text-left-desktop">
+                    <div v-if="!dead" class="column is-two-thirds target has-text-left-desktop">
                         <div v-if="target">
                             <h2>Target: {{target.name_first}} {{target.name_last}}</h2><br>
 
@@ -30,7 +30,7 @@
                 <div v-if="dead">
                     <h1 class="has-text-centered">Your are dead</h1>
                 </div>
-                <div class="columns">
+                <div class="columns" v-if="!dead">
                     <div class="column">
                         <div class="btn-wrapper">
                             <router-link to="/shop" class="brk-btn brk-btn-gold">Shop</router-link>

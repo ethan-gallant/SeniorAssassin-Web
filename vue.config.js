@@ -1,6 +1,6 @@
 const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
-    publicPath: './',
+    publicPath: '/',
     pwa: {
         name: 'SeniorAssassin',
         themeColor: '#ba0108',
