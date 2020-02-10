@@ -67,7 +67,7 @@ const routes = [
     path: '/rules',
     name: 'rules',
     component: Rules,
-    meta: {requiresAuth: true}
+    meta: {requiresAuth: false}
   },
   {
     path: '/admin/PendingKills',
