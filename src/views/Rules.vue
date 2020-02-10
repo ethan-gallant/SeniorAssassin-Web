@@ -50,6 +50,9 @@
                         <div class="accordion-content">
                             <ul class="rule-list">
                                 <li class="rule-item">Bathroom</li>
+                                <li class="rule-item">Assembly And Advisory</li>
+                                <li class="rule-item">Teacher's Offices</li>
+                                <li class="rule-item red">Only 1 senior per freshman no sharing</li>
                                 <li class="rule-item">Bell tower between the times of 10:00 am and 1:00 pm</li>
                                 <li class="rule-item">Religious places</li>
                                 <li class="rule-item">Library and Library lobby</li>
