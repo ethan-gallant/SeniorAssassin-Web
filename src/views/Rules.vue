@@ -52,7 +52,7 @@
                                 <li class="rule-item">Bathroom</li>
                                 <li class="rule-item">Bell tower between the times of 10:00 am and 1:00 pm</li>
                                 <li class="rule-item">Religious places</li>
-                                <li class="rule-item">Library (may be changed)</li>
+                                <li class="rule-item">Library and Library lobby</li>
                                 <li class="rule-item">Classrooms (while class is in session and in passing periods)(you can't camp out in classrooms)</li>
                                 <li class="rule-item">Inside cars</li>
                                 <li class="rule-item">Work</li>
@@ -133,6 +133,7 @@
                     <div class="accordion-body">
                         <div class="accordion-content">
                             <ul class="rule-list">
+                                <li class="rule-item red">You must use your own stickers</li>
                                 <li class="rule-item">Stickers have been decided as the weapon of choice this year</li>
 
                                 <li class="rule-item">You must place the sticker on the arm below the elbow</li>
