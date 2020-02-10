@@ -49,6 +49,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="columns" v-if="assassinFirstName">
+                            <div class="column">
+                                <img v-if="!assassinHidden" class="assassin-picture" :src="assassinUrl" alt="">
+                                <img v-if="assassinHidden" class="assassin-picture" src="../assets/img/nopicture.jpg" alt="">
+                                <h2 class="reveal-assassin">
+                                    Your Assassin: {{assassinFirstName}} {{assassinLastName}}
+                                </h2>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <h1 class="safe">How to stay safe: Holding Hands With Freshman</h1>
+                        <p>Effective Until Midnight Feb 12</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -68,6 +86,11 @@
                 loading: false,
                 hasTarget: false,
                 dead: false,
+                assassinFirstName: null,
+                assassinLastName: null,
+                assassinUrl: null,
+                assassinHidden: null,
+
 
             }
         },
@@ -106,6 +129,12 @@
 console.log(error)
                     _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
                 })
+            axios.get('https://saapi.excl.dev/me/expose-assassin', config).then((response)=>{
+                 _this.assassinHidden = response.data.photo_hidden;
+                 _this.assassinFirstName = response.data.name_first;
+                 _this.assassinLastName = response.data.name_last;
+                 _this.assassinUrl = response.data.url;
+            })
 
         },
         methods:{
@@ -139,6 +168,15 @@ console.log(error)
     }
 
     .target h2 {
+        font-size: 2em;
+    }
+    .safe{
+        font-size: 1.5em;
+    }
+    .assassin-picture{
+        width: 50%;
+    }
+    .reveal-assassin{
         font-size: 2em;
     }
 </style>
