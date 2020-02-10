@@ -37,11 +37,11 @@
                         </div>
                     </div>
 
-<!--                    <div class="column">-->
-<!--                        <div class="btn-wrapper">-->
-<!--                            <a href="#" class="brk-btn-blue brk-btn">Stats</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div class="column">
+                        <div class="btn-wrapper">
+                            <router-link to="/admin/pendingkills" class="brk-btn-red brk-btn">Admin</router-link>
+                        </div>
+                    </div>
 
                     <div class="column">
                         <div class="btn-wrapper">
@@ -57,6 +57,7 @@
 <script>
     import axios from 'axios'
     import Swal from 'sweetalert2/src/sweetalert2.js'
+    import Vue from "vue";
     export default {
         name: "Dashboard",
         data: () => {
@@ -106,6 +107,11 @@ console.log(error)
                     _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
                 })
 
+        },
+        methods:{
+            isAdmin(){
+                return JSON.parse(atob(Vue.$cookies.get("session").split('.')[1])).is_admin;
+            }
         }
     }
 </script>
