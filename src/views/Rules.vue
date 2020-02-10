@@ -52,7 +52,8 @@
                                 <li class="rule-item">Bathroom</li>
                                 <li class="rule-item">Bell tower between the times of 10:00 am and 1:00 pm</li>
                                 <li class="rule-item">Religious places</li>
-                                <li class="rule-item">Classrooms</li>
+                                <li class="rule-item">Library (may be changed)</li>
+                                <li class="rule-item">Classrooms (while class is in session and in passing periods)(you can't camp out in classrooms)</li>
                                 <li class="rule-item">Inside cars</li>
                                 <li class="rule-item">Work</li>
                                 <li class="rule-item">If you’re playing a sport, you’re safe, if you’re spectating
