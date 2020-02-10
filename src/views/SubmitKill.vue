@@ -5,6 +5,7 @@
 
 <div class="level">
     <div class="upload-btn-wrapper">
+        <p class="has-text-centered">Picture must include target's face</p>
         <button class="btn">Upload a file</button> <p v-if="file" class="has-text-centered">{{file.name}}</p>
         <input type="file" id="file" ref="file" accept=".jpg,.jpeg" @change="handleFileUpload()"/>
     </div>
