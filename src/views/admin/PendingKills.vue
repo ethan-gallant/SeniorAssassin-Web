@@ -14,7 +14,7 @@
                 <td>{{kill.assassin_email}}</td>
                 <td>{{kill.target_email}}</td>
                     <td><button @click="confirmApprove(kill.uuid)" class="button is-primary">Approve</button></td>
-                    <td><button @click="confirmDeny(kill.uuid)" class="button is-danger">Danger</button></td>
+                    <td><button @click="confirmDeny(kill.uuid)" class="button is-danger">Deny</button></td>
                 </tr>
             </tbody>
         </table>
