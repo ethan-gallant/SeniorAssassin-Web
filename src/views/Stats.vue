@@ -17,6 +17,7 @@
            </div>
            <div v-if="this.fallen" class="top-kills has-text-centered">
                <h1>Fallen comrades</h1>
+               <h2>Total Deaths: {{fallen.length}}</h2>
                <div class="columns  is-multiline top-fallen-list">
                    <div v-for="dead in this.fallen" class="column is-one-quarter">
                        <img class="top-fallen-img" :src="dead.url" alt="">
@@ -39,7 +40,7 @@
             return{
                 loading: true,
                 topkills: null,
-                fallen: null
+                fallen: null,
 
             }
         },
