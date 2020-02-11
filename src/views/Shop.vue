@@ -5,6 +5,7 @@
             <div class="shop-header">
                 <h1>Shop</h1>
                 <p>Current Balance: {{balance}}</p>
+                <a @click="redeem()" class="brk-btn brk-btn-gold">Redeem Code</a>
             </div>
             <div class="columns" v-for="(product, index) in products">
                 <div class="column">
@@ -73,7 +74,7 @@
 let _this = this;
                 axios.post('https://saapi.excl.dev/shop/buy/' + item, {}, {
                     headers: {
-                        'Authorization': 'Bearer ' + this.$cookies.get("session")
+                        'Authorization': 'Bearer ' + _this.$cookies.get("session")
                     }}).then((response) =>{
                     console.log(response)
                         if(response.data.err){
@@ -93,6 +94,46 @@ let _this = this;
                     })
                 })
 
+            },
+            redeem(){
+                let _this = this;
+                Swal.fire({
+                    title: 'Enter Code',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Submit',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    console.log(result)
+
+                    if (result.value) {
+                        console.log(result)
+                        axios.post('https://saapi.excl.dev/shop/redeem/' + result.value, {}, {
+                            headers: {
+                                'Authorization': 'Bearer ' + _this.$cookies.get("session")
+                            }}).then((response) =>{
+                            console.log(response)
+                            if(response.data.err){
+                                Swal.fire('Failed', response.data.err, 'error').then(() =>{
+                                    _this.$router.push({path: '/dashboard'})
+
+                                })
+                                return;
+                            }
+                            Swal.fire('Congrats', 'Item Purchased', 'success').then(() =>{
+                                _this.$router.push({path: '/shop'})
+                            })
+
+                        }).catch((error) =>{
+                            Swal.fire('Failed', 'Something Went Wrong Please Try Again later', 'error').then(() =>{
+                                _this.$router.push({path: '/dashboard'})
+                            })
+                        })
+                    }else{
+                        return;
+                    }
+                })
             }
         }
     }
@@ -111,6 +152,9 @@ let _this = this;
         font-family: 'mad_hackerregular', sans-serif;
         font-size: 2em;
         margin-bottom: 50px;
+    }
+    .shop-header .brk-btn{
+        font-size: .5em;
     }
 
     .shop-icon {
