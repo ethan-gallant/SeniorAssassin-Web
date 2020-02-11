@@ -121,7 +121,7 @@ let _this = this;
                                 })
                                 return;
                             }
-                            Swal.fire('Congrats', 'Item Purchased', 'success').then(() =>{
+                            Swal.fire('Congrats', 'Item Redeemed', 'success').then(() =>{
                                 _this.$router.push({path: '/shop'})
                             })
 

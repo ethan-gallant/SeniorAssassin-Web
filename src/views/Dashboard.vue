@@ -36,6 +36,11 @@
                             <router-link to="/shop" class="brk-btn brk-btn-gold">Shop</router-link>
                         </div>
                     </div>
+                    <div class="column">
+                        <div class="btn-wrapper">
+                            <router-link to="/stats" class="brk-btn brk-btn-blue">Stats</router-link>
+                        </div>
+                    </div>
 
                     <div class="column" v-if="isAdmin()">
                         <div class="btn-wrapper">

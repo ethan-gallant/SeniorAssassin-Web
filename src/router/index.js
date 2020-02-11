@@ -11,6 +11,7 @@ import Shop from "../views/Shop";
 import OpenTargets from "../views/OpenTargets";
 import SubmitKill from "../views/SubmitKill";
 import PendingKills from "../views/admin/PendingKills";
+import Stats from "../views/Stats";
 
 Vue.use(VueRouter)
 
@@ -68,6 +69,12 @@ const routes = [
     name: 'rules',
     component: Rules,
     meta: {requiresAuth: false}
+  },
+  {
+    path: '/stats',
+    name: 'stats',
+    component: Stats,
+    meta: {requiresAuth: true}
   },
   {
     path: '/admin/PendingKills',

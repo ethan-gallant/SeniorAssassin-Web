@@ -41,6 +41,10 @@
         "destination": "/index.html"
       },
       {
+        "source": "/stats",
+        "destination": "/index.html"
+      },
+      {
         "source": "/admin/pendingkills",
         "destination": "/index.html"
       },
