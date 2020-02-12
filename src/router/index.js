@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import InvalidEmail from "../views/error/InvalidEmail";
 import CustomError from "../views/error/CustomError";
 import Dashboard from "../views/Dashboard";
+import AdminDashboard from "../views/admin/Dashboard";
 import Rules from "../views/Rules";
 import notFound from "../views/error/404"
 import SetToken from "../views/SetToken";
@@ -12,6 +13,7 @@ import OpenTargets from "../views/OpenTargets";
 import SubmitKill from "../views/SubmitKill";
 import PendingKills from "../views/admin/PendingKills";
 import Stats from "../views/Stats";
+import AllStudents from "../views/admin/AllStudents";
 
 Vue.use(VueRouter)
 
@@ -77,9 +79,21 @@ const routes = [
     meta: {requiresAuth: true}
   },
   {
+    path: '/admin',
+    name: 'dashboard',
+    component: AdminDashboard,
+    meta: {requiresAuth: true, requiresAdmin: true}
+  },
+  {
     path: '/admin/PendingKills',
     name: 'pendingkills',
     component: PendingKills,
+    meta: {requiresAuth: true, requiresAdmin: true}
+  },
+  {
+    path: '/admin/AllStudents',
+    name: 'allstudents',
+    component: AllStudents,
     meta: {requiresAuth: true, requiresAdmin: true}
   },
   {

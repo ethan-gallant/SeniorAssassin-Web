@@ -49,6 +49,14 @@
         "destination": "/index.html"
       },
       {
+        "source": "/admin",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/admin/allstudents",
+        "destination": "/index.html"
+      },
+      {
         "source": "/error",
         "destination": "/index.html"
       }

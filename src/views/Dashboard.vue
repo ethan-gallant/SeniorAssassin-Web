@@ -44,7 +44,7 @@
 
                     <div class="column" v-if="isAdmin()">
                         <div class="btn-wrapper">
-                            <router-link to="/admin/pendingkills" class="brk-btn-red brk-btn">Admin</router-link>
+                            <router-link to="/admin" class="brk-btn-red brk-btn">Admin</router-link>
                         </div>
                     </div>
 
