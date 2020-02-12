@@ -5,6 +5,9 @@
            <div class="stats-title has-text-centered">
                <h1>sTATS</h1>
            </div>
+           <div class="btn-wrapper has-text-centered">
+               <router-link to="/dashboard" class="brk-btn-grey brk-btn">Return to Dashboard</router-link>
+           </div>
            <div v-if="this.topkills" class="top-kills has-text-centered">
                <h1>Top Assassins</h1>
                <div class="columns top-kills-list">
