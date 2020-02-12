@@ -30,8 +30,8 @@
                 <div v-if="dead">
                     <h1 class="has-text-centered">Your are dead</h1>
                 </div>
-                <div class="columns" v-if="!dead">
-                    <div class="column">
+                <div class="columns" >
+                    <div class="column" v-if="!dead">
                         <div class="btn-wrapper">
                             <router-link to="/shop" class="brk-btn brk-btn-gold">Shop</router-link>
                         </div>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="column">
-                        <div class="btn-wrapper">
+                        <div class="btn-wrapper" >
                             <router-link to="/rules" class="brk-btn-grey brk-btn">Rules</router-link>
                         </div>
                     </div>
