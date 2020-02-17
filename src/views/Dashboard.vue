@@ -7,20 +7,15 @@
             <div class="container">
                 <div v-if="hasTarget" class="columns">
                     <div class="column is-one-third">
-
                             <img v-if="!hidePhoto" :src="url" alt="" class="picture">
-
-
                             <img v-if="hidePhoto" class="nopicture" alt="No Picture" src="../assets/img/nopicture.jpg"/>
-
-
                     </div>
                     <div v-if="!dead" class="column is-two-thirds target has-text-left-desktop">
                         <div v-if="target">
                             <h2>Target: {{target.name_first}} {{target.name_last}}</h2><br>
 
 
-                            <router-link v-if="!killed" to="/submitKill" class="brk-btn">Submit Assassination</router-link>
+                            <a v-if="!killed" @click="submitKill(target.email)" class="brk-btn">Submit Assassination</a>
                             <p v-else>Pending Approval</p>
                         </div>
                     </div>
@@ -41,16 +36,19 @@
                             <router-link to="/stats" class="brk-btn brk-btn-blue">Stats</router-link>
                         </div>
                     </div>
-
-                    <div class="column" v-if="isAdmin()">
-                        <div class="btn-wrapper">
-                            <router-link to="/admin" class="brk-btn-red brk-btn">Admin</router-link>
-                        </div>
-                    </div>
-
                     <div class="column">
                         <div class="btn-wrapper" >
                             <router-link to="/rules" class="brk-btn-grey brk-btn">Rules</router-link>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="btn-wrapper">
+                            <router-link to="/opentargets" class="brk-btn-red brk-btn">Bounty List</router-link>
+                        </div>
+                    </div>
+                    <div class="column" v-if="isAdmin()">
+                        <div class="btn-wrapper">
+                            <router-link to="/admin" class="brk-btn-red brk-btn">Admin</router-link>
                         </div>
                     </div>
                 </div>
@@ -68,8 +66,8 @@
 
                     </div>
                     <div class="column">
-                        <h1 class="safe">How to stay safe: Holding Hands With Freshman</h1>
-                        <p>Effective Until Midnight Feb 12</p>
+                        <h1 class="safe">How to stay safe: Wear a swim cap or bike helmet</h1>
+                        <p>Effective Until Midnight Feb 18</p>
                     </div>
                 </div>
             </div>
@@ -91,6 +89,7 @@
                 loading: false,
                 hasTarget: false,
                 dead: false,
+                //Expose Assassin Vars
                 assassinFirstName: null,
                 assassinLastName: null,
                 assassinUrl: null,
@@ -101,12 +100,13 @@
         },
         mounted() {
             let _this = this;
+            this.loading = true
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + _this.$cookies.get("session")
                 }
             }
-            this.loading = true
+            //Grab User Data
             axios.get('https://saapi.excl.dev/me/', config).then((response)=>{
                 _this.dead = response.data.dead
             }).catch(()=>{
@@ -114,14 +114,14 @@
                     _this.$router.push({path: '/'})
                 })
             })
+            //Grab Current Target
             axios.get('https://saapi.excl.dev/me/targets/current', config)
                 .then(function (response) {
-                console.log(response)
+                    //If User does not have a target, This is either because the user is dead or is an admin/not playing
                     if(!response.data){
                         _this.loading = false;
                         _this.hasTarget = false;
                         return;
-
                     }
                     _this.hasTarget = true;
                     _this.target = response.data;
@@ -130,21 +130,28 @@
                     _this.killed = response.data.killed;
                     _this.loading = false;
                 })
-                .catch(function (error) {
-console.log(error)
-                    _this.$router.push({path: '/error?title=Target Not Found&message=Target was not returned try clearing your cookies if issue persists please contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
-                })
+                .catch((error) => {
+                    Swal.fire('Failed', 'Unable To Load Target', 'error').then(() =>{
+                        _this.$router.push({path: '/'})
+                    })
+                });
+            //Expose Assassin Logic
             axios.get('https://saapi.excl.dev/me/expose-assassin', config).then((response)=>{
                  _this.assassinHidden = response.data.photo_hidden;
                  _this.assassinFirstName = response.data.name_first;
                  _this.assassinLastName = response.data.name_last;
                  _this.assassinUrl = response.data.url;
-            })
+            }).catch((error) =>{
+                // console.log(error)
+            });
 
         },
         methods:{
             isAdmin(){
                 return JSON.parse(atob(Vue.$cookies.get("session").split('.')[1])).is_admin;
+            },
+            submitKill(target){
+                this.$router.push({ path: '/submitkill', query: { target: target, type: '0' } })
             }
         }
     }

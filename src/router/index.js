@@ -80,7 +80,7 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'dashboard',
+    name: 'admindashboard',
     component: AdminDashboard,
     meta: {requiresAuth: true, requiresAdmin: true}
   },
@@ -115,20 +115,18 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   function isAuth() {
-    let tempSession = null;
     let userInfo = null;
-    tempSession = Vue.$cookies.get("session");
-    if(tempSession === null){
+    let tempSession = Vue.$cookies.get("session");
+    if(!tempSession){
       return false;
     }
     userInfo = JSON.parse(atob(tempSession.split('.')[1]));
 
-    if((Date.now()/1000) - 86400 > userInfo.iat){
-      return false;
-
-    }//TODO: refresh current cookie
+    // if((Date.now()/1000) - 86400 > userInfo.iat){
+    //   return false;
+    //
+    // }//TODO: refresh current cookie
     return true;
-
   }
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
@@ -139,14 +137,12 @@ router.beforeEach((to, from, next) => {
       }else{
         next({
           path: '/',
-          // query: { redirect: to.fullPath }
         })
       }
     }
     if (!isAuth()) {
       next({
         path: '/',
-        // query: { redirect: to.fullPath }
       })
     } else {
       next()

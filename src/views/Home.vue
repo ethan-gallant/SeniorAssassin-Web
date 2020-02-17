@@ -101,10 +101,10 @@
                     }
                     userInfo = JSON.parse(atob(tempSession.split('.')[1]));
 
-                    if((Date.now()/1000) - 86400 > userInfo.iat){
-                        window.location.replace("https://saapi.excl.dev/auth/login");
-
-                    }//TODO: refresh current cookie
+                    // if((Date.now()/1000) - 86400 > userInfo.iat){
+                    //     window.location.replace("https://saapi.excl.dev/auth/login");
+                    //
+                    // }//TODO: refresh current cookie
                 this.$router.push({ path: '/dashboard' })
 
 

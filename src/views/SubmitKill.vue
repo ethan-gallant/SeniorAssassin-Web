@@ -12,9 +12,6 @@
 </div>
       <div class="level">
           <a v-if="file" @click="submitFile()" class="brk-btn submit-button">Submit</a>
-
-
-
       </div>
       <div class="level">
           <router-link to="/dashboard" class="brk-btn-grey submit-button brk-btn">Return to Dashboard</router-link>
@@ -35,43 +32,57 @@
         data: () => {
             return {
                 loading: false,
-                file: null
+                file: null,
+                type: -1,
+                target: null,
             }
         },
         mounted() {
+            let urlParams = new URLSearchParams(window.location.search);
+            urlParams.forEach((val, key) => {
+                //there is probably a better way to do this but this is my way
+                console.log(val, key)
+                if(key === "target"){
+                    this.target = val;
+                }else if (key === "type"){
+                    this.type = parseInt(val, 10);
+                }
+            })
+            if(!this.target || this.type === -1){
+                Swal.fire('Error', 'No Target Found Please Try Again', 'error').then(() =>{
+                    this.$router.push({path: '/dashboard'})
+                })
+            }
         },
         methods: {
             submitFile() {
 
                 let _this = this;
-                this.loading = true;
-                axios.get('https://saapi.excl.dev/me/submit-kill',
-                    {
-                        headers: {
-                            'Authorization': 'Bearer ' + _this.$cookies.get("session")
-                        }
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + _this.$cookies.get("session")
                     }
-                ).then(function (response){
-                    console.log("starting upload")
-                    console.log(response)
+                }
+                this.loading = true;
+
+                axios.post('https://saapi.excl.dev/me/kill', {
+                    type: _this.type,
+                    target: _this.target,
+                }, config).then(function (response){
                     axios.put(response.data.data.url,
-                        _this.file,
-                        {
-                            headers: {
-                                'Content-Type': _this.file.type
-                            }
-                        }
-                    ).then(function (response) {
+                        _this.file).then(function (response) {
                         _this.loading = false;
                         Swal.fire('Congrats', 'Kill Submitted Please Wait for Approval', 'success').then(() =>{
                             _this.$router.push({path: '/dashboard'})
                         })
                     })
                         .catch(function (error) {
+                            _this.loading = false;
                             Swal.fire('Oops...', 'Something went wrong! Please Try again', 'error')
                         });
                 }).catch(function (error) {
-
+                    _this.loading = false;
+                    Swal.fire('Oops...', error.response.data.err, 'error')
                 })
 
 

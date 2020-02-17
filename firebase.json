@@ -45,6 +45,10 @@
         "destination": "/index.html"
       },
       {
+        "source": "/opentargets",
+        "destination": "/index.html"
+      },
+      {
         "source": "/admin/pendingkills",
         "destination": "/index.html"
       },
