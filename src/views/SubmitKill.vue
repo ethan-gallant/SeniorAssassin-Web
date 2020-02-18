@@ -64,13 +64,17 @@
                     }
                 }
                 this.loading = true;
-
+                let jpegconfig = {
+                    headers: {
+                        'Content-Type': 'image/jpeg'
+                    }
+                }
                 axios.post('https://saapi.excl.dev/me/kill', {
                     type: _this.type,
                     target: _this.target,
                 }, config).then(function (response){
-                    axios.put(response.data.data.url,
-                        _this.file).then(function (response) {
+                    axios.put(response.data.data.url, _this.file, jpegconfig)
+                        .then(function (response) {
                         _this.loading = false;
                         Swal.fire('Congrats', 'Kill Submitted Please Wait for Approval', 'success').then(() =>{
                             _this.$router.push({path: '/dashboard'})
