@@ -41,7 +41,7 @@
                             <router-link to="/rules" class="brk-btn-grey brk-btn">Rules</router-link>
                         </div>
                     </div>
-                    <div class="column">
+                    <div class="column" v-if="!dead">
                         <div class="btn-wrapper">
                             <router-link to="/opentargets" class="brk-btn-red brk-btn">Bounty List</router-link>
                         </div>
@@ -66,9 +66,8 @@
 
                     </div>
                     <div class="column">
-                        <h1 class="safe">How to stay safe: Where a trash bag over your clothes</h1>
-                        <p>(Must completely cover shirt)(no wearing as a scarf or over your shoulder, cut 3 holes in it and wear it like a shirt)</p>
-                        <p>Effective Until Midnight Feb 19</p>
+                        <h1 class="safe">How to stay safe: None it's the purge</h1>
+                        <p>Effective From 8:00 am to 3:00 pm</p>
                     </div>
                 </div>
             </div>
