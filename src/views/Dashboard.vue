@@ -26,7 +26,7 @@
                     <h1 class="has-text-centered">Your are dead</h1>
                 </div>
                 <div class="columns" >
-                    <div class="column" v-if="!dead">
+                    <div class="column" v-if="showShop">
                         <div class="btn-wrapper">
                             <router-link to="/shop" class="brk-btn brk-btn-gold">Shop</router-link>
                         </div>
@@ -66,8 +66,8 @@
 
                     </div>
                     <div class="column">
-                        <h1 class="safe">How to stay safe: None it's the purge</h1>
-                        <p>Effective From 8:00 am to 3:00 pm</p>
+                        <h1 class="safe">How to stay safe:Prom Prep (check your email)</h1>
+                        <p>Effective Feb 21 midnight</p>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
             }
             //Grab User Data
             axios.get('https://saapi.excl.dev/me/', config).then((response)=>{
-                _this.dead = response.data.dead
+                _this.dead = response.data.is_dead
             }).catch(()=>{
                 Swal.fire('Failed', 'Unable to load user', 'error').then(() =>{
                     _this.$router.push({path: '/'})
@@ -150,8 +150,16 @@
             isAdmin(){
                 return JSON.parse(atob(Vue.$cookies.get("session").split('.')[1])).is_admin;
             },
+            isTeacher(){
+                return JSON.parse(atob(Vue.$cookies.get("session").split('.')[1])).type === "teacher";
+            },
             submitKill(target){
                 this.$router.push({ path: '/submitkill', query: { target: target, type: '0' } })
+            }
+        },
+        computed:{
+            showShop(){
+                return !this.dead && !this.isTeacher();
             }
         }
     }

@@ -5,7 +5,10 @@
             <th>Image</th>
             <th>Assassin</th>
             <th>Target</th>
+            <th>Open Target</th>
+            <th>Teacher Target</th>
             <th>Approve</th>
+
             <th>Deny</th>
             </thead>
             <tbody>
@@ -13,6 +16,8 @@
                 <td><a :href="kill.url"><img style="width: 10vw" :src="kill.url" alt=""></a></td>
                 <td>{{kill.assassin_email}}</td>
                 <td>{{kill.target_email}}</td>
+                <td>{{kill.opentarget}}</td>
+                <td>{{kill.teachertarget}}</td>
                 <td>
                     <button @click="confirmApprove(kill.uuid)" class="button is-primary">Approve</button>
                 </td>

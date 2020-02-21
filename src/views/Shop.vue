@@ -1,6 +1,26 @@
 <template>
     <div>
         <div class="pageloader is-dark" :class="{'is-active': loading}"><span class="title">Loading Shop</span></div>
+        <div class="modal" :class="{'is-active': showSelectTeacher}">
+            <div class="modal-background" @click="showSelectTeacher = false"></div>
+            <div class="modal-content">
+
+                <table class="table is-dark is-bordered is-striped is-fullwidth">
+                    <thead>
+                    <th>Teacher</th>
+                    <th>Select</th>
+
+                    </thead>
+                    <tbody>
+                    <tr v-for="teacher in teachers">
+                        <td>{{teacher.salutation}}.{{teacher.name_last}}</td>
+                        <td><a @click="hireTeacher(teacher.email)" class="button is-primary">Select</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="modal-close is-large" @click="showSelectTeacher = false" aria-label="close"></button>
+        </div>
         <div v-if="products" class="has-text-centered shop">
             <div class="shop-header">
                 <h1>Shop</h1>
@@ -37,6 +57,9 @@
                 loading: false,
                 products: null,
                 balance: 0,
+                teachers: null,
+                selectedTeacher: null,
+                showSelectTeacher: false,
             }
 
         },
@@ -47,6 +70,7 @@
                     'Authorization': 'Bearer ' + this.$cookies.get("session")
                 }
             }
+
             this.loading = true
             axios.get('https://saapi.excl.dev/shop/products', config)
                 .then(function (response) {
@@ -66,11 +90,24 @@
                 .catch(function (error) {
 
                     _this.$router.push({path: '/error?title=Error&message=Shop was unable to load please try again and if issue persists contact support&buttonPath=/dashboard&buttonMessage=Return To Dashboard'})
+                });
+            axios.get('https://saapi.excl.dev/shop/teachers', config)
+                .then((response) => {
+                    _this.teachers = response.data;
                 })
+                .catch((error) => {
+                    Swal.fire('Error', 'Could Not Load Teachers', 'error').then(() =>{
+                        _this.$router.push({path: '/dashboard'})
+                    })
+                });
 
         },
         methods: {
             purchase(item) {
+                if(item === "teacher-assassin"){
+                    this.showSelectTeacher = true;
+                    return;
+                }
 let _this = this;
                 axios.post('https://saapi.excl.dev/shop/buy/' + item, {}, {
                     headers: {
@@ -94,6 +131,54 @@ let _this = this;
                     })
                 })
 
+            },
+            hireTeacher(email){
+                this.showSelectTeacher = false;
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$cookies.get("session")
+                    }
+                }
+                let _this = this;
+                Swal.fire({
+                    title: 'Hiring: ' + email,
+                    icon: 'info',
+                    html:
+                        '<b>Select Who you want your teacher to target</b>',
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:"My Assassin",
+                    cancelButtonText:"My Target"
+                }).then((res)=>{
+                    if(res.dismiss === "cancel"){
+                        axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
+                            type: 0,
+                            teacher: email
+
+                        }, config).then((response) => {
+                            Swal.fire('Success', 'Teacher Has Been Hired', 'success');
+                            console.log(response)
+                        }).catch((error) => {
+                            Swal.fire('error', error.response.data.err, 'error').then(() =>{
+                                _this.$router.push({path: '/dashboard'})
+                            })
+                        })
+                    }
+                    if(res.value === "true"){
+                        axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
+                            type: 1,
+                            teacher: email
+
+                        }, config).then((response) => {
+                            Swal.fire('Success', 'Teacher Has Been Hired', 'success');
+                        }).catch((error) => {
+                            Swal.fire('Error', error.response.data.err, 'error').then(() =>{
+                                _this.$router.push({path: '/dashboard'})
+                            })
+                        })
+                    }
+                })
             },
             redeem(){
                 let _this = this;
@@ -172,5 +257,8 @@ let _this = this;
 
     .shop-header p {
         font-size: .5em;
+    }
+    td {
+        color: black;
     }
 </style>

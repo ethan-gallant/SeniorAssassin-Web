@@ -7,7 +7,7 @@
         name: "SetToken",
         mounted() {
             let urlParams = new URLSearchParams(window.location.search);
-            urlParams.forEach((val, key) => {
+            urlParams.forEach((val, key) => {p
                 //there is probably a better way to do this but this is my way
                 if(key === "token"){
                     this.$cookies.set('session', val);
