@@ -167,7 +167,7 @@ let _this = this;
                             })
                         })
                     }
-                    if(res.value === "true"){
+                    if(res.value){
                         axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
                             type: 1,
                             teacher: email,
