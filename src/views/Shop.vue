@@ -151,6 +151,7 @@ let _this = this;
                     confirmButtonText:"My Assassin",
                     cancelButtonText:"My Target"
                 }).then((res)=>{
+                    console.log("Hire Teacher Repsonse: " + res)
                     if(res.dismiss === "cancel"){
                         axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
                             type: 0,
@@ -160,6 +161,7 @@ let _this = this;
                             Swal.fire('Success', 'Teacher Has Been Hired', 'success');
                             console.log(response)
                         }).catch((error) => {
+                            console.log("my target error:" + error)
                             Swal.fire('error', error.response.data.err, 'error').then(() =>{
                                 _this.$router.push({path: '/dashboard'})
                             })
@@ -168,14 +170,16 @@ let _this = this;
                     if(res.value === "true"){
                         axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
                             type: 1,
-                            teacher: email
+                            teacher: email,
 
                         }, config).then((response) => {
                             Swal.fire('Success', 'Teacher Has Been Hired', 'success');
                         }).catch((error) => {
+
                             Swal.fire('Error', error.response.data.err, 'error').then(() =>{
                                 _this.$router.push({path: '/dashboard'})
                             })
+                            console.log("my target error:" + error)
                         })
                     }
                 })
