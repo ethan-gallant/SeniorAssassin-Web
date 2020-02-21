@@ -151,7 +151,7 @@ let _this = this;
                     confirmButtonText:"My Assassin",
                     cancelButtonText:"My Target"
                 }).then((res)=>{
-                    console.log("Hire Teacher Repsonse: " + res)
+                    console.log("Hire Teacher Repsonse: " + JSON.stringify(res))
                     if(res.dismiss === "cancel"){
                         axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
                             type: 0,
