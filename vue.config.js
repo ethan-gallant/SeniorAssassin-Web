@@ -1,17 +1,17 @@
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
-    publicPath: '/',
+    publicPath: "/",
     pwa: {
-        name: 'SeniorAssassin',
-        themeColor: '#ba0108',
-        msTileColor: '#000000',
-        appleMobileWebAppCapable: 'yes',
-        appleMobileWebAppStatusBarStyle: 'black',
+        name: "SeniorAssassin",
+        themeColor: "#ba0108",
+        msTileColor: "#000000",
+        appleMobileWebAppCapable: "yes",
+        appleMobileWebAppStatusBarStyle: "black",
         manifestOptions:{
-            name: 'SeniorAssassin',
-            short_name: 'Assassin',
-            start_url: '.',
-            display: 'standalone',
+            name: "SeniorAssassin",
+            short_name: "Assassin",
+            start_url: ".",
+            display: "standalone",
             icons: [
                 {
                     "src": "/img/icons/android-icon-192x192.png",
@@ -42,17 +42,17 @@ module.exports = {
         },
 
         // configure the workbox plugin
-        workboxPluginMode: 'GenerateSW',
+        workboxPluginMode: "GenerateSW",
         workboxOptions: {
-            swDest: 'service-worker.js',
+            swDest: "service-worker.js",
             // ...other Workbox options...
         }
     },
     configureWebpack:{
         plugins: [
             new CopyPlugin([
-                {from: 'src/assets/img/icons', to: 'img/icons'},
-                {from: 'src/assets/img/shop', to: 'img/shop'}
+                {from: "src/assets/img/icons", to: "img/icons"},
+                {from: "src/assets/img/shop", to: "img/shop"}
             ]),
         ],
     }

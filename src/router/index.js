@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue"
+import VueRouter from "vue-router"
+import Home from "../views/Home.vue"
 import InvalidEmail from "../views/error/InvalidEmail";
 import CustomError from "../views/error/CustomError";
 import Dashboard from "../views/Dashboard";
@@ -15,90 +15,90 @@ import PendingKills from "../views/admin/PendingKills";
 import Stats from "../views/Stats";
 import AllStudents from "../views/admin/AllStudents";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: "/",
+    name: "home",
     component: Home,
     meta: {requiresAuth: false}
   },
   {
-    path: '/invalidemail',
-    name: 'invalidemail',
+    path: "/invalidemail",
+    name: "invalidemail",
     component: InvalidEmail,
     meta: {requiresAuth: false}
   },
   {
-    path: '/settoken',
-    name: 'settoken',
+    path: "/settoken",
+    name: "settoken",
     component: SetToken,
     meta: {requiresAuth: false}
   },
   {
-    path: '/error',
-    name: 'customerror',
+    path: "/error",
+    name: "customerror",
     component: CustomError,
     meta: {requiresAuth: false}
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
+    path: "/dashboard",
+    name: "dashboard",
     component: Dashboard,
     meta: {requiresAuth: true}
   },
   {
-    path: '/shop',
-    name: 'shop',
+    path: "/shop",
+    name: "shop",
     component: Shop,
     meta: {requiresAuth: true}
   },
   {
-    path: '/submitkill',
-    name: 'submitkill',
+    path: "/submitkill",
+    name: "submitkill",
     component: SubmitKill,
     meta: {requiresAuth: false}
   },
   {
-    path: '/openTargets',
-    name: 'opentargets',
+    path: "/openTargets",
+    name: "opentargets",
     component: OpenTargets,
     meta: {requiresAuth: true}
   },
   {
-    path: '/rules',
-    name: 'rules',
+    path: "/rules",
+    name: "rules",
     component: Rules,
     meta: {requiresAuth: false}
   },
   {
-    path: '/stats',
-    name: 'stats',
+    path: "/stats",
+    name: "stats",
     component: Stats,
     meta: {requiresAuth: true}
   },
   {
-    path: '/admin',
-    name: 'admindashboard',
+    path: "/admin",
+    name: "admindashboard",
     component: AdminDashboard,
     meta: {requiresAuth: true, requiresAdmin: true}
   },
   {
-    path: '/admin/PendingKills',
-    name: 'pendingkills',
+    path: "/admin/PendingKills",
+    name: "pendingkills",
     component: PendingKills,
     meta: {requiresAuth: true, requiresAdmin: true}
   },
   {
-    path: '/admin/AllStudents',
-    name: 'allstudents',
+    path: "/admin/AllStudents",
+    name: "allstudents",
     component: AllStudents,
     meta: {requiresAuth: true, requiresAdmin: true}
   },
   {
-    path: '*',
-    name: 'notFound',
+    path: "*",
+    name: "notFound",
     component: notFound,
     meta: {requiresAuth: false}
   },
@@ -106,7 +106,7 @@ const routes = [
 
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
 });
@@ -120,7 +120,7 @@ router.beforeEach((to, from, next) => {
     if(!tempSession){
       return false;
     }
-    userInfo = JSON.parse(atob(tempSession.split('.')[1]));
+    userInfo = JSON.parse(atob(tempSession.split(".")[1]));
 
     // if((Date.now()/1000) - 86400 > userInfo.iat){
     //   return false;
@@ -132,17 +132,17 @@ router.beforeEach((to, from, next) => {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     if (to.matched.some(record => record.meta.requiresAdmin)){
-      if(JSON.parse(atob(Vue.$cookies.get("session").split('.')[1])).is_admin){
+      if(JSON.parse(atob(Vue.$cookies.get("session").split(".")[1])).is_admin){
         next()
       }else{
         next({
-          path: '/',
+          path: "/",
         })
       }
     }
     if (!isAuth()) {
       next({
-        path: '/',
+        path: "/",
       })
     } else {
       next()
@@ -150,7 +150,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next() // make sure to always call next()!
   }
-})
+});
 
 
 export default router
