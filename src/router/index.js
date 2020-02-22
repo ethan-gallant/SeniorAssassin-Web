@@ -1,12 +1,12 @@
-import Vue from "vue"
-import VueRouter from "vue-router"
-import Home from "../views/Home.vue"
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
 import InvalidEmail from "../views/error/InvalidEmail";
 import CustomError from "../views/error/CustomError";
 import Dashboard from "../views/Dashboard";
 import AdminDashboard from "../views/admin/Dashboard";
 import Rules from "../views/Rules";
-import notFound from "../views/error/404"
+import notFound from "../views/error/404";
 import SetToken from "../views/SetToken";
 import Shop from "../views/Shop";
 import OpenTargets from "../views/OpenTargets";
@@ -153,4 +153,4 @@ router.beforeEach((to, from, next) => {
 });
 
 
-export default router
+export default router;
