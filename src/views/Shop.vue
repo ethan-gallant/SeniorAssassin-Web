@@ -154,8 +154,8 @@ let _this = this;
                     console.log("Hire Teacher Repsonse: " + JSON.stringify(res))
                     if(res.dismiss === "cancel"){
                         axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
-                            type: 0,
-                            teacher: email
+                            "type": 0,
+                            "teacher": email
 
                         }, config).then((response) => {
                             Swal.fire('Success', 'Teacher Has Been Hired', 'success');
