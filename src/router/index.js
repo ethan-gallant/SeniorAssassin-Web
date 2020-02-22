@@ -128,27 +128,27 @@ router.beforeEach((to, from, next) => {
     // }//TODO: refresh current cookie
     return true;
   }
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (to.matched.some(record => record.meta.requiresAdmin)){
+    if (to.matched.some((record) => record.meta.requiresAdmin)){
       if(JSON.parse(atob(Vue.$cookies.get("session").split(".")[1])).is_admin){
-        next()
+        next();
       }else{
         next({
           path: "/",
-        })
+        });
       }
     }
     if (!isAuth()) {
       next({
         path: "/",
-      })
+      });
     } else {
-      next()
+      next();
     }
   } else {
-    next() // make sure to always call next()!
+    next(); // make sure to always call next()!
   }
 });
 
