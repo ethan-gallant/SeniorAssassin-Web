@@ -162,26 +162,25 @@ let _this = this;
                             console.log(response)
                         }).catch((error) => {
                             console.log("my target error:" + error)
-                            Swal.fire('error', error.response.data.err, 'error').then(() =>{
+                            Swal.fire('error', error.response.err, 'error').then(() =>{
                                 _this.$router.push({path: '/dashboard'})
                             })
                         })
                     }
                     if(res.value){
-                        Swal.fire('Error', 'Hiring a teacher to kill your assassin is currently under development please try again later', 'error');
-                        // axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
-                        //     type: 1,
-                        //     teacher: email,
-                        //
-                        // }, config).then((response) => {
-                        //     Swal.fire('Success', 'Teacher Has Been Hired', 'success');
-                        // }).catch((error) => {
-                        //
-                        //     Swal.fire('Error', error.response.data.err, 'error').then(() =>{
-                        //         _this.$router.push({path: '/dashboard'})
-                        //     })
-                        //     console.log("my target error:" + error)
-                        // })
+                        axios.post('https://saapi.excl.dev/shop/buy/teacher-assassin', {
+                            type: 1,
+                            teacher: email,
+
+                        }, config).then((response) => {
+                            Swal.fire('Success', 'Teacher Has Been Hired', 'success');
+                        }).catch((error) => {
+
+                            Swal.fire('Error', error.response.err, 'error').then(() =>{
+                                _this.$router.push({path: '/dashboard'})
+                            })
+                            console.log("my target error:" + error)
+                        })
                     }
                 })
             },
