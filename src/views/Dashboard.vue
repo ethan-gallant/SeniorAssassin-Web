@@ -66,8 +66,10 @@
 
                     </div>
                     <div class="column">
-                        <h1 class="safe">How to stay safe:Balance a cup of water on your head (check your email)</h1>
-                        <p>Effective Feb 21 midnight</p>
+                        <h1 class="safe">How to stay safe:Stomach On Ground (check your email)</h1>
+
+                        <p>Effective Feb 25 midnight</p>
+
                     </div>
                 </div>
             </div>
