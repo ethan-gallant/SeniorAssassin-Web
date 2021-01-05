@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@sweetalert2/theme-borderless": "^3.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bulma": "^0.8.0",
     "bulma-accordion": "^2.0.1",
     "bulma-pageloader": "^0.3.0",
