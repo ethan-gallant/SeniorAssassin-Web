@@ -14,7 +14,7 @@
     "bulma-pageloader": "^0.3.0",
     "copy-webpack-plugin": "^5.1.1",
     "core-js": "^3.4.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "register-service-worker": "^1.6.2",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.1.3",
